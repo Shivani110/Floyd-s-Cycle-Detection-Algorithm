@@ -1,0 +1,48 @@
+<html>
+<body>
+<script>
+		class nodeN
+		{
+			constructor(a)
+			{
+				this.n = a;
+				this.nxt = null;
+			}
+		}
+
+		var h = null;
+		function findloop(h) 
+		{
+			var pointer_S = h;
+			var pointer_F = h;
+
+			while (pointer_S != null
+				&& pointer_F != null
+				&& pointer_F.nxt != null) {
+				pointer_S = pointer_S.nxt;
+				pointer_F = pointer_F.nxt.nxt;
+				if (pointer_S== pointer_F)
+					return 1;
+			}
+
+			return 0;
+		}
+		h = new nodeN(10);
+		h.nxt = new nodeN(30);
+		h.nxt.nxt = new nodeN(20);
+		h.nxt.nxt.nxt = new nodeN(40);
+		h.nxt.nxt.nxt.nxt = new nodeN(60);
+
+		var p = h;
+		while (p.nxt != null)
+			p = p.nxt;
+            p.nxt = h;
+
+		if (findloop(h))
+			document.write("Loop is exists" + "<br>");
+		else
+			document.write("Loop does not exists" + "<br>");
+
+	</script>
+	</body>
+	</html>
